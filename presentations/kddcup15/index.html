@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Near-uniform Aggregation of Gradient Boosting Machines for KDD Cup 2015</title>
+
+		<meta name="description" content="Slide for KDD Cup 2015">
+		<meta name="author" content="Yao-Yuan Yang">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+    <!--<link rel="stylesheet" href="css/theme/serif.css" id="theme">-->
+    <link rel="stylesheet" href="css/theme/serif.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+    <style>
+      .slides{
+        background-image: url("img/ntu-logo2.png");
+        background-repeat: no-repeat;
+        background-position: left top;
+        background-size: 280px 70px;
+      }
+      .reveal h2 {
+        margin-bottom: 25px;
+      }
+      .reveal .slide-number{
+        font-size: 30px;
+        margin: 0 120px 50px 0;
+      }
+      #single-model tr td, #single-model tr th{
+       text-align:center;
+      }
+    </style>
+	</head>
+
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h3 style="font-size: 1.5em">
+            Near-uniform Aggregation of Gradient Boosting Machines for KDD Cup 2015
+          </h3>
+          <p>and more...</p>
+          <p>CLMS, National Taiwan University</p>
+					<h5 style="margin-top: 0px; font-size: 80%; transform: translateY(40px)">
+            Ming-Lun Cai,
+            Chih-Wei Chang,
+            Liang-Wei Chen,
+            Si-An Chen,<br>
+            Hsien-Chun Chiu,
+            Hong-Min Chu,
+            Yu-Jheng Fang,
+            Yi Huang,<br>
+            Kuan-Hao Huang,
+            Chih-Te Lai,
+            Yi-An Lin,
+            Chieh-En Tsai,
+            Yeh-Wen Tsao,<br>
+            Yu-Lin Tsou,
+            Wei-Cheng Wang,
+            Yu-Ping Wu,
+            Yao-Yuan Yang,<br>
+            Sheng-Chi You,
+            Sz-Han Yu,
+            Hsuan-Tien Lin and
+            Shou-De Lin
+          </h5>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+            ## Outline
+            - Team Members
+            - Approaches
+            - Methods
+            - Final Submissions
+            - Conclusions
+					</script>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section data-markdown>
+            <script type="text/template">
+              ## Team Members
+              - National Taiwan University
+              - 2 faculties:
+                - Profs. Hsuan-Tien Lin and Shou-De Lin
+                - CLMS --> CLLab and MSLab
+              - 19 students:
+                - most without KDD cup experience
+                - 13 undergraduates
+              - 5 subteams
+                - each works independently, synchronize once a week
+            </script>
+            <aside class="notes">
+              internaly we are divided into 5 sub teams
+            </aside>
+					</section>
+					<section>
+            <table style="transform: translateY(40px)">
+              <tr>
+                <td><img src="img/teammates/htlin.jpg" width=100></td>
+                <td><img src="img/teammates/sdlin.jpg" width=100></td>
+                <td><img src="img/teammates/sheng-chi.jpg" width=100></td>
+                <td><img src="img/teammates/yu-jheng.jpg" width=100></td>
+                <td><img src="img/teammates/chih-wei.jpg" width=100></td>
+                <td><img src="img/teammates/chieh-en.jpg" width=100></td>
+                <td><img src="img/teammates/liang-wei.jpg" width=100></td>
+              </tr>
+              <tr>
+                <td><img src="img/teammates/yao-yuan.jpg" width=100></td>
+                <td><img src="img/teammates/yi.png" width=100></td>
+                <td><img src="img/teammates/chih-te.jpg" width=100></td>
+                <td><img src="img/teammates/kuan-hao.jpg" width=100></td>
+                <td><img src="img/teammates/yi-an.jpg" width=100></td>
+                <td><img src="img/teammates/yu-ping.jpg" width=100></td>
+                <td><img src="img/teammates/si-an.jpg" width=100></td>
+              </tr>
+              <tr>
+                <td><img src="img/teammates/yeh-wen.jpg" width=100></td>
+                <td><img src="img/teammates/hong-min.jpg" width=100></td>
+                <td><img src="img/teammates/yu-lin.jpg" width=100></td>
+                <td><img src="img/teammates/ming-lun.jpg" width=100></td>
+                <td><img src="img/teammates/hsien-chun.jpg" width=100></td>
+                <td><img src="img/teammates/sz-han.jpg" width=100></td>
+                <td><img src="img/teammates/wei-cheng.jpg" width=100></td>
+              </tr>
+            </table>
+					</section>
+				</section>
+
+				<section>
+					<section>
+            <h2>Approaches</h2>
+					</section>
+
+          <section>
+            <h2> Data Set </h2>
+            <p>training : test = 3 : 2</p>
+            <svg id="ds-pie1"></svg>
+            <aside class="notes">
+              source: {source, browser}
+              event: {nagivate, access, problem, page_close}
+              object: hash
+              catagory: {about, chapter, course_info, html}
+            </aside>
+					</section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## Validation<small>(1/2)</small>
+              - avoid overfitting the leaderboard
+              - method:
+                - **randomly** pick enrollments from training-set
+                - public score and validation score are highly correlated
+            </script>
+          </section>
+
+					<section>
+						<h2 style="margin-bottom: 10px">Validation<small>(2/2)</small></h2>
+            <p style="margin-top: 5px">sub-training : validation = 4 : 1</p>
+            <svg id="ds-pie2"></svg>
+					</section>
+
+					<section>
+						<h2>A General Framework</h2>
+            <img src="img/general-framework.png" width=100%
+                 style="margin-top:50px; border:0; box-shadow:none;">
+					</section>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+            ## Methods
+            - Feature Extraction
+            - Models
+            - Ensemble
+					</script>
+				</section>
+
+				<section>
+          <section>
+            <h2>Feature Extraction</h2>
+            <!--
+              - In the end, around 120 features are send into each single model.
+              -->
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Basic Features <small>(1/2)</small>
+              - basic statistics
+              - around 70-80 features fit in this catagory
+              - some examples:
+                - total # of logs in this enrollment
+                - total # of enrollments for this course
+                - total # of logs for this user
+                - last idle second (course end time - last log time)
+                - duration (last log time - first log time)
+            </script>
+            <aside class="notes">
+              intuition of these features.
+              Simple statistics, easy to do and think of, but very important.
+              0.8 with only one feature
+            </aside>
+          </section>
+
+          <section>
+            <h2>Basic Feature <small>(2/2)</small></h2>
+            <img src="img/feature/feature-1.png" width=70%
+                 style="margin-top:30px; border:0; box-shadow:none;">
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              <h2 style="margin-bottom:1px">
+                Leak Feature <small>(1/2)</small>
+              </h2>
+              - statistics on the 30-40th day
+              - examples:
+                - \# of logs the user have in 30-40th day from other courses
+
+              <!--<img src="img/time-based-feature.png" width=90%>-->
+              <img src="img/leak-feature.jpg" width=100%
+                 style="margin-top:0px; border:0; box-shadow:none;">
+
+            </script>
+            <aside class="notes">
+              log of each enrollment is in a 30 window for a course,
+              the definition of dropout is the user have no activity after this
+              time window.
+            </aside>
+          </section>
+
+          <section>
+            <h2 style="margin-bottom:5px">
+              Leak Feature <small>(2/2)</small>
+            </h2>
+            <img src="img/feature/feature-2.png" width=70%
+                 style="margin-top:0px; border:0; box-shadow:none;">
+          </section>
+
+          <section>
+            <h2>Label Based Feature <small>(1/2)</small></h2>
+            <ul>
+              <li>include label information</li>
+              <ul>
+                <li>could be <strong>risky</strong></li>
+                <li>consider <strong>only</strong> labels from other instances</li>
+              </ul>
+              <li>example:</li>
+              <ul>
+                <li># of dropped courses for this user</li>
+                <li>drop rate on other courses for this user</li>
+              </ul>
+
+            <img src="img/labeled-based.png" width=100%
+                 style="margin-top:0px; border:0; box-shadow:none;">
+            </script>
+          </section>
+
+          <section>
+            <h2>Label Based Feature <small>(2/2)</small></h2>
+            <img src="img/feature/feature-3.png" width=70%
+                 style="margin-top:0px; border:0; box-shadow:none;">
+          </section>
+				</section>
+
+				<section>
+          <section>
+            <h2>Single Model</h2>
+            <table id="single-model" style="font-size:30px;">
+              <tr>
+                <th>model</th>
+                <th>validation</th>
+                <th>public</th>
+                <th>private</th>
+              </tr>
+              <tr>
+                <td>gradient boosting</td>
+                <td>0.907365</td>
+                <td>0.907532</td>
+                <td>0.905854</td>
+              </tr>
+              <tr>
+                <td>random forest</td>
+                <td>0.905666</td>
+                <td>0.907497</td>
+                <td>0.905588</td>
+              </tr>
+              <tr>
+                <td>neural network</td>
+                <td>0.905160</td>
+                <td>0.904746</td>
+                <td>0.902830</td>
+              </tr>
+              <tr>
+                <td>adaptive boosting</td>
+                <td>0.904177</td>
+                <td>N/A</td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td>logistic regression</td>
+                <td>0.902474</td>
+                <td>N/A</td>
+                <td>N/A</td>
+              </tr>
+            </table>
+          </section>
+				</section>
+
+				<section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Ensemble
+              - Framework
+              - Validation-set Blending
+              - Test-set Blending
+              - Comparisons
+            </script>
+            <aside class="notes">
+              - Diversity
+            </aside>
+          </section>
+          <!--<section data-markdown>
+            <script type="text/template">
+              ## Diversity
+              - obtain from:
+                - different feature sets
+                - different models and their parameters
+              - method
+                - no code sharing between sub-teams
+                - share only the concept
+                - create diversity from different implementations
+            </script>
+          </section>-->
+
+          <section>
+            <h2 style="margin-bottom: 5px">Ensemble Framework</h2>
+            <img src="img/ensemble-framework.png" width=80%
+                 style="margin-top:30px; border:0; box-shadow:none;">
+          </section>
+
+          <!--<section data-markdown>
+            <script type="text/template">
+              ## Score Transformation
+              - The score output from different model might have different
+              meaning
+              - Ranked score: sort all the instances by model's output score and
+              scale them into [0, 1) linearly
+              - Normalized score: simply normalize models's output score into
+              [0, 1) linearly
+            </script>
+          </section>-->
+          <section data-markdown>
+            <script type="text/template">
+              ## Validation-set Blending <small>(1/3)</small>
+              - assign weight to each model - weighted average
+              - take predictions from model as feature and **build a
+                model** on top of it
+
+              <p style="background-color:rgb(255, 150, 150); padding:15px 15px; font-size:120%">
+                **a new split from original data-set is needed**
+              </p>
+            </script>
+          </section>
+          <section>
+            <h2 style="margin-bottom: 5px">
+              Validation-set Blending <small>(2/3)</small>
+            </h2>
+            <ul>
+              <li>
+                <span style="color:#00bb00"><strong>blend</strong></span>
+                as training data,
+                <span style="color:#dd0044"><strong>validation</strong></span>
+                as validation data
+              </li>
+            </ul>
+            <svg id="ds-pie3"></svg>
+            <aside class="notes">
+              <li>collect predictions on blend, validation and test set from
+                single model</li>
+            </aside>
+          </section>
+          <section>
+            <h2>Validation-set Blending <small>(3/3)</small></h2>
+            <ul>
+              <li>linear large-scale rankSVM from LIBSVM Tools</li>
+              <ul>
+                <li>optimize AUC</li>
+                <li>no significant benifit with non-linear models</li>
+              </ul>
+              <li>combining over 70 different models from 5 sub-teams</li>
+              <ul>
+                <li>does't perform well with all models blended</li>
+                <li>heuristic model (feature) selection</li>
+              </ul>
+            </ul>
+          </section>
+
+          <!--<section data-markdown>
+            <script type="text/template">
+              ## Validation-set Blending <small>(4/4)</small>
+              - Around **70** models in the model pool.
+              - heuristic model(feature) selection:
+                1. Find **one** model that results in the best score after
+                  removing it, by going through all models in the pool.
+                2. Remove the model from the pool.
+                3. Repeat (1) (2) until no model in the pool.
+            </script>
+            <aside class="notes">
+              If we throw all 70 model into blending, it won't provide a good
+              result since there are too much noise.
+              In the process you will get a bunch of validation score and you
+              just simply select the best one.
+            </aside>
+          </section>-->
+          <section data-markdown>
+            <script type="text/template">
+              ## Test-set Blending
+              - directly exploits learderboard information
+              - method that NTU team applied in KDD cup 2012:
+                1. AUC --> pairwise ranking accuarcy --> square error
+                2. apply ridge regression to optimize square error
+                3. transfer pairwise ranking prediction back to ranking
+                   prediction
+            </script>
+            <aside class="notes">
+              not possible to go into too detail in limited time,
+              anyone who is interested in this technique are welcome to dicuss
+              with us at the poster session
+            </aside>
+          </section>
+
+          <section>
+            <h2 style="margin-bottom: 5px">Comparisons</h2>
+            <table style="">
+              <tr>
+                <th>Validation-set Blending</th>
+                <th>Test-set Blending</th>
+              </tr>
+              <tr>
+                <td>pairwise hinge loss</td>
+                <td>square error to <br> approximate AUC</td>
+              </tr>
+              <tr>
+                <td>easier to optimize <br> under more control</td>
+                <td>directly exploits <br> leaderboard information</td>
+              </tr>
+              <tr>
+                <td>smaller training set</td>
+                <td>need public score</td>
+              </tr>
+            </table>
+          </section>
+
+          <section>
+            <h2>Results <small>(1/2)</small></h2>
+            <table>
+              <tr>
+                <th></th>
+                <th>Public</th>
+                <th>Private</th>
+              </tr>
+              <tr>
+                <td>Best Single Model</td>
+                <td>0.907532475</td>
+                <td>0.905853623</td>
+              </tr>
+              <tr bgcolor="#ffff00">
+                <td>Validation-set Blending</td>
+                <td><strong>0.908343215</strong></td>
+                <td>0.906487001</td>
+              </tr>
+              <tr bgcolor="#ffff00">
+                <td>Test-set Blending</td>
+                <td>0.908204930</td>
+                <td><strong>0.906601438</strong></td>
+              </tr>
+            </table>
+
+          </section>
+          <section>
+            <h2>Results <small>(2/2)</small></h2>
+            <img src="img/feature/feature-4.png" width=70%
+                 style="margin-top:0px; border:0; box-shadow:none;">
+          </section>
+          <section>
+            <h2 style="font-size: 1.7em">
+              Near-uniform Aggregation of Gradient Boosting Machines
+            </h2>
+            <ul>
+              <li>
+                <strong>near-uniform</strong>: weight vector in the ridge
+                regression after test-set blending is near-uniform</li>
+              <li>selected models are all <strong>GBM models</strong></li>
+            </ul>
+						<aside class="notes">
+              Back to our title, ...,
+              This model is generated by test-set blending.
+              weight vector
+              close to uniform blending
+              adding other models into it don't quite generate good result, so
+              in the end we submit this as one of our five final submissions.
+
+              I've finished my title, so what about the "and more" subtitle.
+              This is the model we originaly thought to be our best private
+              score,
+              When we are deciding our title, we thought this was our best
+              private score result.
+              I am going to talk about the rest of our submissions and the best
+              private score submission
+						</aside>
+          </section>
+				</section>
+
+				<section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Final Submissions
+            </script>
+						<aside class="notes">
+              The first two submissions are selected just for safety since we
+              found the public and private score could vary a lot.
+						</aside>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Non-risky
+              - **without label based features**
+              - but **fine features in this competition**
+              <table>
+                <tr>
+                  <th></th>
+                  <th>Public</th>
+                  <th>Private</th>
+                </tr>
+                <tr>
+                  <td>Best Single Model</td>
+                  <td>0.907532475</td>
+                  <td>0.905853623</td>
+                </tr>
+                <tr>
+                  <td>Validation-set Blending</td>
+                  <td>0.908343215</td>
+                  <td>0.906487001</td>
+                </tr>
+                <tr>
+                  <td>Test-set Blending</td>
+                  <td>0.908204930</td>
+                  <td>0.906601438</td>
+                </tr>
+                <tr bgcolor="#ffff00">
+                  <td>Non-risky</td>
+                  <td>0.905802465</td>
+                  <td>0.903825326</td>
+                </tr>
+              </table>
+            </script>
+          </section>
+          <!--<section data-markdown>
+						<aside class="notes">
+              After the model selection method we introduced, there are just 9
+              models left.
+              We originally thought it would take a lot of models to get a good
+              result, but infact that most of them is remove from the model
+              pool we our approach.
+              This submission was made on june 28, still around 15 days before
+              the competition ends.
+						</aside>
+          </section>-->
+
+          <section>
+            <h2>Conditional Blending</h2>
+            <ul>
+              <li>
+                combine uniformly, predictions result in same prediction values
+              </li>
+              <li>
+                the instances that model 1 and 2 can't decide, introduce
+                model 3 to decide
+              </li>
+            </ul>
+            <img src="img/conditional-blending2.png" width=70%
+                 style="margin-top:10px; border:0; box-shadow:none;">
+          </section>
+
+          <!--<section data-markdown>
+            <script type="text/template">
+              ## Conditional Blending <small>(1/3)</small>
+              - lots of submitted models
+              - observations:
+                1. similar public score
+                2. but still high diversity (# reversed ranking pairs)
+                3. **combine uniformly**, predictions results
+                   in same prediction values since prediction values are their
+                   rank
+
+              <p style="background-color:rgb(255, 150, 150); padding:15px 15px; font-size:110%">
+                **Bring another prediction to break tie**
+              </p>
+            </script>
+						<aside class="notes">
+              - last day, with a lot of submitted results, we
+                want to squeeze out every room left for improvment
+              - predictions results in same prediction values since
+                prediction values are their rank
+						</aside>
+          </section>
+
+          <section>
+            <h2>Conditional Blending <small>(2/3)</small></h2>
+            <p>the instances that model 1 and 2 can't decide, we introduce
+              model 3 to decide by giving it a small weight $\epsilon$</p>
+            <img src="img/conditional-blending.png" width=70%
+                 style="margin-top:10px; border:0; box-shadow:none;">
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## Conditional Blending <small>(3/3)</small>
+              - with no new validation set, heuristically select models and 
+                weight to perfrom conditional blending
+              - selection based on the **# reversed ranking pairs** between
+                models and their public score
+            </script>
+          </section>-->
+
+          <section>
+            <h2 style="margin-bottom:5px">Scores</h2>
+            <table>
+              <tr>
+                <th></th>
+                <th>Public</th>
+                <th>Private</th>
+              </tr>
+              <tr>
+                <td>Best Single Model</td>
+                <td>0.907532475</td>
+                <td>0.905853623</td>
+              </tr>
+              <tr>
+                <td>Validation-set Blending</td>
+                <td>0.908343215</td>
+                <td>0.906487001</td>
+              </tr>
+              <tr>
+                <td>Test-set Blending</td>
+                <td>0.908204930</td>
+                <td>0.906601438</td>
+              </tr>
+              <tr>
+                <td>Non-risky</td>
+                <td>0.905802465</td>
+                <td>0.903825326</td>
+              </tr>
+              <tr bgcolor="#ffff00">
+                <!--<td>highest public score</td>-->
+                <td>2-Level Conditional Blending</td>
+                <td>0.908572416</td>
+                <td>0.906612375</td>
+              </tr>
+              <tr bgcolor="#ffff00">
+                <td>3-Level Conditional Blending</td>
+                <td>0.908541224</td>
+                <td>0.906632903</td>
+              </tr>
+            </table>
+          </section>
+				</section>
+
+        <section>
+          <h2 style="margin-bottom:5px">Actual Best Private Score</h2>
+          <ul>
+            <li>another test-set blending result</li>
+            <li>nearly uniform blending of 2 validation-set blending results and 5
+            GBM models</li>
+          </ul>
+          <table>
+            <tr>
+              <th></th>
+              <th>Public</th>
+              <th>Private</th>
+            </tr>
+            <tr>
+              <td>Test-set Blending</td>
+              <td>0.908204930</td>
+              <td>0.906601438</td>
+            </tr>
+            <tr>
+              <td>Highest Public Score</td>
+              <td>0.908572416</td>
+              <td>0.906612375</td>
+            </tr>
+            <tr>
+              <td>3-Level Conditional Blending</td>
+              <td>0.908541224</td>
+              <td>0.906632903</td>
+            </tr>
+            <tr bgcolor="#ffff00">
+              <td>Best Private</td>
+              <td>0.908370011</td>
+              <td>0.906652903</td>
+            </tr>
+          </table>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Conclusions
+            - **simple uniform blending could provide good results**
+              - conditional blending didn't gave us a better result than
+                uniform blending
+            - label based features are not so risky in this competition
+            - we thank the organizers and the support from National Taiwan
+            University
+          </script>
+          <aside class="notes">
+            - **feature diversity** that makes our ensemble's successful
+          </aside>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+		<script>
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+        loop: false,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+        slideNumber: 'c / t',
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/math/math.js', async: true },
+				]
+			});
+
+		</script>
+		<script src="js/draw.js"></script>
+
+	</body>
+</html>
+<!--
+					<section>
+            <img src="img/teammates/sheng-chi.jpg" width=210>
+            <img src="img/teammates/yu-jheng.jpg" width=210>
+            <img src="img/teammates/chih-wei.jpg" width=210>
+            <img src="img/teammates/chieh-en.jpg" width=210>
+						<p>Sheng-Chi You, Yu-Jheng Fang, Chih-Wei Chang and Chieh-En Tsai</p>
+					</section>
+					<section>
+            <img src="img/teammates/liang-wei.jpg" width=210>
+            <img src="img/teammates/yao-yuan.jpg" width=210>
+            <img src="img/teammates/yi.png" width=210>
+            <img src="img/teammates/chih-te.jpg" width=210>
+						<p>Liang-Wei Chen, Yao-Yuan Yang, Yi Huang and Chih-Te Lai</p>
+					</section>
+					<section>
+            <img src="img/teammates/kuan-hao.jpg" width=210>
+            <img src="img/teammates/yi-an.jpg" width=210>
+            <img src="img/teammates/yu-ping.jpg" width=210>
+						<p>Kuan-Hao Huang, Yi-An Lin and Yu-Ping Wu</p>
+					</section>
+					<section>
+            <img src="img/teammates/si-an.jpg" width=210>
+            <img src="img/teammates/yeh-wen.jpg" width=210>
+            <img src="img/teammates/hong-min.jpg" width=210>
+            <img src="img/teammates/yu-lin.jpg" width=210>
+						<p>Si-An Chen, Yeh-Wen Tsao, Hong-Min Chu and Yu-Lin Tsou</p>
+            <aside class="notes">
+              Youngest teamembers, Sophormore.
+            </aside>
+					</section>
+					<section>
+            <img src="img/teammates/ming-lun.jpg" width=210>
+            <img src="img/teammates/hsien-chun.jpg" width=210>
+            <img src="img/teammates/sz-han.jpg" width=210>
+            <img src="img/teammates/wei-cheng.jpg" width=210>
+						<p>Ming-Lun Cai, Hsien-Chun Chiu, Sz-Han Yu and Wei-Cheng Wang</p>
+					</section>
+					<section>
+            <img src="img/teammates/htlin.jpg" width=400>
+            <img src="img/teammates/sdlin.jpg" width=310>
+            <p>Profs. Hsuan-Tien Lin and Shou-De Lin</p>
+					</section>
+-->

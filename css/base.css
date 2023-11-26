@@ -1,0 +1,12 @@
+.footer {
+  bottom: 0;
+  width: 100%;
+}
+
+.footer .container {
+  padding: 20px 15px 15px 15px;
+}
+
+.footer .container .text-muted{
+  margin: 0;
+}

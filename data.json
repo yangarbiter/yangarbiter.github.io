@@ -1,0 +1,431 @@
+{
+    "talks": [
+        {
+            "title": "What You See is What You Get: Distributional Generalization for Algorithm Design in Deep Learning",
+            "time": "March 2022",
+            "place": "UCSD, La Jolla, CA",
+            "link": "http://cseopenhouse.ucsd.edu/"
+        },
+        {
+            "title": "What You See is What You Get: Distributional Generalization for Algorithm Design in Deep Learning",
+            "time": "March 2022",
+            "place": "Apple, Virtual"
+        },
+        {
+            "title": "A Closer Look at Accuracy vs. Robustness",
+            "time": "October 2021",
+            "place": "INFORMS annual meeting, Anaheim, CA",
+            "link": "https://www.abstractsonline.com/pp8/#!/10390/session/1650"
+        },
+        {
+            "title": "In- and Out-of-Distribution Generalization Properties of Adversarially Robust Models",
+            "time": "August 2021",
+            "place": "Science of Deep Learning at Facebook, Virtual"
+        },
+        {
+            "title": "Close Category Generalization for Out-of-Distribution Classification",
+            "time": "March 2021",
+            "place": "SoCal ML Symposium 2021, Virtual"
+        },
+        {
+            "title": "A Closer Look at Accuracy vs. Robustness",
+            "time": "March 2021",
+            "place": "SoCal ML Symposium 2021, Virtual"
+        },
+        {
+            "title": "A Closer Look at Accuracy vs. Robustness",
+            "time": "January 2021",
+            "place": "G-Research, Virtual",
+            "slide_url": "presentations/rob_vs_acc_gresearch21.pdf"
+        },
+        {
+            "title": "A Closer Look at Accuracy vs. Robustness",
+            "time": "December 2020",
+            "place": "NeurIPS 2020, Virtual",
+            "video_url": "https://slideslive.com/38936188"
+        },
+        {
+            "title": "Robustness for Non-Parametric Classification: A Generic Attack and Defense",
+            "time": "August 2020",
+            "place": "AISTATS 2020, Virtual",
+            "slide_url": "presentations/pruning_slide_aistats20.pdf",
+            "video_url": "https://aistats2020.net/poster_334.html"
+        },
+        {
+            "title": "A Closer Look at Accuracy vs. Robustness",
+            "time": "June 2020",
+            "place": "ICML UDL 2020, Virtual",
+            "video_url": "https://slideslive.com/38930945/a-closer-look-at-accuracy-vs-robustness",
+            "slide_url": "presentations/rob_vs_acc-icml-udl-2020.pdf"
+        },
+        {
+            "title": "Deep Learning with a Rethinking Structure for Multi-label Classification",
+            "time": "November 2019",
+            "place": "ACML, Nagoya, Japan",
+            "slide_url": "presentations/rethinknet_slide_acml19.pdf",
+            "poster_url": "presentations/rethinknet_poster_acml19.pdf"
+        },
+        {
+            "title": "Deep Learning with a Rethinking Structure for Multi-label Classification",
+            "time": "November 2018",
+            "place": "ACML-Mol, Beijing, China",
+            "slide_url": "presentations/rethinknet_slide_acml18.pdf"
+        },
+        {
+            "title": "Cost-Sensitive Reference Pair Encoding for Multi-Label Learning",
+            "time": "June 2018",
+            "place": "PAKDD, Melbourne, Australia",
+            "slide_url": "presentations/csrpe_slide_pakdd18.pdf"
+        },
+        {
+            "title": "Cost-Sensitive Random Pair Encoding for Cost-Sensitive Multi-Label Classification",
+            "time": "December 2016",
+            "place": "NTU Machine Learning Symposium, Taipei, Taiwan",
+            "slide_url": "presentations/csrpe_slide_16"
+        },
+        {
+            "title": "Near-uniform Aggregation of Gradient Boosting Machines for KDD Cup 2015",
+            "time": "August 2015",
+            "place": "KDD, Sydney, Australia",
+            "slide_url": "presentations/kddcup15/"
+        },
+        {
+            "title": "Introduction to Machine Learning: Teaching Machine to Read Gestures",
+            "time": "March 2015",
+            "place": "SITCON, Taipei, Taiwan",
+            "slide_url": "presentations/myo-parasite/"
+        }
+    ],
+    "awards": [
+        "First Appier prize & Second department prize (with S.-C. Lee and Y.-A. Chung), NTU CSIE special project fair, 2015",
+        "Fourth prize (out of 800+ teams) (with NTU team), KDD Cup, 2015",
+        "First prize (with P.-H. Chu and Y.-A. Chung), Big Data Analytics for Semiconductor Manufacturing Competition, Taiwan Semiconductor Manufacturing Company, 2015",
+        "Second prize (with S.-C. Lee, S.-R. Lin), Information Security Contest, Institute for Information Industry, 2015",
+        "Undergraduate research grant, Ministry of Science and Technology of Taiwan, 2014",
+        "Fourth prize (with S.-C. Lee, S.-R. Lin), Information Security Contest, Institute for Information Industry, 2013"
+    ],
+    "short_bio": "<p>Yao-Yuan is currently working in <a href=\"https://www.deepmind.com/\">DeepMind</a>.\nIn 2022, he received his Ph.D. from the\n<a href=\"https://cse.ucsd.edu/\">Computer Science and Engineering</a>\ndepartment of <a href=\"https://ucsd.edu/\">UCSD</a>, advised by Professor\n<a href=\"http://cseweb.ucsd.edu/~kamalika/\">Kamalika Chaudhuri</a>.\nHis thesis was on trustworthy machine learning, which includes topics such as\nadversarial examples, interpretability, and spurious correlations.\nPrior to joining UCSD, he received his B.S. in\n<a href=\"https://www.csie.ntu.edu.tw/\">Computer Science</a> from\n<a href=\"http://www.ntu.edu.tw/english/\">National Taiwan University</a> in 2016.</p>\n\n<p>Here are my\n<a href=\"docs/curriculum_vitae.pdf\">CV</a>,\n<a href=\"docs/research_statement.pdf\">research statement</a>,\nand three representative papers (<a href=\"https://arxiv.org/abs/2003.02460\">paper1</a>,\n<a href=\"docs/Robustness and Generalization to Nearest Categories preprint.pdf\">paper2</a>,\n<a href=\"https://arxiv.org/abs/1906.03310\">paper3</a>).</p>\n\n<p>Here are some problems he previously worked on:</p>\n\n<ul>\n<li>Cost-sensitive multi-label classification</li>\n<li>Active learning</li>\n<li>Brain decoding with electroencephalogram (EEG)</li>\n</ul>\n",
+    "projects": [
+        {
+            "title": "libact",
+            "short_description": "Pool-based active learning in Python",
+            "url": "https://github.com/ntucllab/libact"
+        },
+        {
+            "title": "striatum",
+            "short_description": "Contextual bandit in Python",
+            "url": "https://github.com/ntucllab/striatum"
+        }
+    ],
+    "publications": [
+        {
+            "software": "https://github.com/yangarbiter/nearest-category-generalization",
+            "arxiv": "https://arxiv.org/abs/2011.08485",
+            "url": "https://openreview.net/forum?id=fTNorIvVXG",
+            "year": "2023",
+            "issn": "2835-8856",
+            "journal": "Transactions on Machine Learning Research",
+            "title": "Probing Predictions on OOD Images via Nearest Categories",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Cyrus Rashtchian, Ruslan Salakhutdinov, and Kamalika Chaudhuri",
+            "ENTRYTYPE": "article",
+            "ID": "YY2023probing",
+            "bib_url": "bibs/YY2023probing.bib"
+        },
+        {
+            "software": "https://github.com/yangarbiter/dp-dg",
+            "arxiv": "https://arxiv.org/abs/2204.03230",
+            "booktitle": "NeurIPS",
+            "year": "2022",
+            "title": "What You See is What You Get: Distributional Generalization for Algorithm Design in Deep Learning",
+            "author": "Bogdan Kulynych*, <b><b>Yao-Yuan Yang</b></b>*, Yaodong Yu, Jarosław Błasiok, and Preetum Nakkiran",
+            "ENTRYTYPE": "article",
+            "ID": "BK2022wysiwyg",
+            "bib_url": "bibs/BK2022wysiwyg.bib"
+        },
+        {
+            "software": "https://github.com/yangarbiter/rare-spurious-correlation",
+            "arxiv": "https://arxiv.org/abs/2202.05189",
+            "booktitle": "submission",
+            "year": "2022",
+            "title": "Understanding Rare Spurious Correlations in Neural Networks",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Chi-Ning Chou, and Kamalika Chaudhuri",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2022rarespurious",
+            "bib_url": "bibs/YY2022rarespurious.bib"
+        },
+        {
+            "software": "https://github.com/pytorch/audio",
+            "booktitle": "Proceedings of IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)",
+            "arxiv": "https://arxiv.org/abs/2110.15018",
+            "year": "2022",
+            "title": "TorchAudio: Building Blocks for Audio and Speech Processing",
+            "author": "<b><b>Yao-Yuan Yang</b></b>*, Moto Hira*, Zhaoheng Ni*, Anjali Chourdia, Artyom Astafurov, Caroline Chen, Ching-Feng Yeh, Christian Puhrsch, David Pollack, Dmitriy Genzel, Donny Greenberg, Edward Z. Yang, Jason Lian, Jay Mahadeokar, Jeff Hwang, Ji Chen, Peter Goldsborough, Prabhat Roy, Sean Narenthiran, Shinji Watanabe, Soumith Chintala, Vincent Quenneville-Bélair, and Yangyang Shi",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2022torchaudio",
+            "bib_url": "bibs/YY2022torchaudio.bib"
+        },
+        {
+            "link": "https://www.nature.com/articles/s41598-022-21384-0",
+            "url": "https://www.nature.com/articles/s41598-022-21384-0",
+            "doi": "10.1038/s41598-022-21384-0",
+            "journal": "Scientific Reports",
+            "year": "2022",
+            "title": "Person-identifying brainprints are stably embedded in EEG mindprints",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Angel Hsing-Chi Hwang, Chien-Te Wu, and Tsung-Ren Huang",
+            "ENTRYTYPE": "article",
+            "ID": "YY2022brainprints",
+            "bib_url": "bibs/YY2022brainprints.bib"
+        },
+        {
+            "pdf": "https://angelhwang.github.io/docs/CSCW_VB.pdf",
+            "link": "https://dl.acm.org/doi/10.1145/3476044",
+            "booktitle": "Proceedings of the 2021 ACM Conference on Computer Supported Cooperative Work (CSCW)",
+            "year": "2021",
+            "title": "Hide and seek: Choices of virtual backgrounds in video chats and their effects on perception",
+            "author": "Angel Hsing-Chi Hwang, Cheng Yao Wang, <b><b>Yao-Yuan Yang</b></b>, and Andrea Stevenson Won",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "AH2021hide",
+            "bib_url": "bibs/AH2021hide.bib",
+            "video": "https://www.youtube.com/watch?v=mBazp0ZdjO0"
+        },
+        {
+            "software": "https://github.com/yangarbiter/interpretable-robust-trees",
+            "arxiv": "https://arxiv.org/abs/2102.07048",
+            "booktitle": "Proceedings of International Conference on Machine Learning (ICML)",
+            "year": "2021",
+            "title": "Connecting Interpretability and Robustness in Decision Trees through Separation",
+            "author": "Michal Moshkovitz, <b><b>Yao-Yuan Yang</b></b>, and Kamalika Chaudhuri",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "MM2021connecting",
+            "bib_url": "bibs/MM2021connecting.bib"
+        },
+        {
+            "software": "https://github.com/yangarbiter/robust-local-lipschitz",
+            "arxiv": "https://arxiv.org/abs/2003.02460",
+            "booktitle": "Proceedings of Neural Information Processing Systems (NeurIPS)",
+            "year": "2020",
+            "title": "A Closer Look at Accuracy vs. Robustness",
+            "author": "<b><b>Yao-Yuan Yang</b></b>*, Cyrus Rashtchian*, Hongyang Zhang, Ruslan Salakhutdinov, and Kamalika Chaudhuri",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2020roblocallip",
+            "bib_url": "bibs/YY2020roblocallip.bib"
+        },
+        {
+            "software": "https://github.com/yangarbiter/adversarial-nonparametrics",
+            "arxiv": "https://arxiv.org/abs/1906.03310",
+            "booktitle": "Proceedings of the International Conference on\nArtificial Intelligence and Statistics (AISTATS)",
+            "year": "2020",
+            "title": "Robustness for Non-Parametric Classification: A Generic Attack and Defense",
+            "author": "<b><b>Yao-Yuan Yang</b></b>*, Cyrus Rashtchian*, Yizhen Wang, and Kamalika Chaudhuri",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2020advprune",
+            "bib_url": "bibs/YY2020advprune.bib"
+        },
+        {
+            "pdf": "http://yyyang.me/docs/paper/BC20pablo.pdf",
+            "year": "2020",
+            "booktitle": "Proceedings of the Special Interest Group on Computer Science Education (SIGCSE)",
+            "title": "PABLO: Helping Novices Debug Python Code Through Data-Driven Fault Localization",
+            "author": "Benjamin Cosman, Madeline Endres, Georgios Sakkas, Leon Medvinsky, <b><b>Yao-Yuan Yang</b></b>, Ranjit Jhala, Kamalika Chaudhuri, and Westley Weimer",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "BC2020pablo",
+            "bib_url": "bibs/BC2020pablo.bib"
+        },
+        {
+            "software": "https://github.com/yangarbiter/multilabel-learn/tree/master/mlearn/models/rethinknet",
+            "arxiv": "https://arxiv.org/abs/1802.01697",
+            "eprint": "arXiv:1802.01697",
+            "booktitle": "Proceedings of the Asian Conference on Machine Learning (ACML)",
+            "year": "2019",
+            "month": "Nov",
+            "title": "Deep Learning with a Rethinking Structure for Multi-label Classification",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Yi-An Lin, Hong-Min Chu, and Hsuan-Tien Lin",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2019rethink",
+            "bib_url": "bibs/YY2019rethink.bib"
+        },
+        {
+            "keyword": "cost-sensitive, multi-label",
+            "pdf": "http://yyyang.me/docs/paper/pakdd18csrpe.pdf",
+            "software": "https://github.com/yangarbiter/multilabel-learn/blob/master/mlearn/models/csrpe.py",
+            "pages": "143--155",
+            "arxiv": "https://arxiv.org/abs/1611.09461",
+            "month": "Jun",
+            "year": "2018",
+            "booktitle": "Proceedings of the Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD)",
+            "title": "Cost-Sensitive Reference Pair Encoding for Multi-Label Learning",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Kuan-Hao Huang, Chih-Wei Chang, and Hsuan-Tien Lin",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2018csrpe",
+            "bib_url": "bibs/YY2018csrpe.bib"
+        },
+        {
+            "year": "2017",
+            "month": "Oct",
+            "arxiv": "https://arxiv.org/abs/1710.00379",
+            "software": "https://github.com/yangarbiter/rare-spurious-correlation",
+            "title": "libact: Pool-based Active Learning in Python",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Shao-Chuan Lee, Yu-An Chung, Tung-En Wu, Si-An Chen, and Hsuan-Tien Lin",
+            "ENTRYTYPE": "techreport",
+            "ID": "YY2017libact",
+            "bib_url": "bibs/YY2017libact.bib"
+        }
+    ],
+    "preprints": [
+        {
+            "software": "https://github.com/yangarbiter/rare-spurious-correlation",
+            "arxiv": "https://arxiv.org/abs/2202.05189",
+            "booktitle": "submission",
+            "year": "2022",
+            "title": "Understanding Rare Spurious Correlations in Neural Networks",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Chi-Ning Chou, and Kamalika Chaudhuri",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2022rarespurious",
+            "bib_url": "bibs/YY2022rarespurious.bib"
+        },
+        {
+            "year": "2017",
+            "month": "Oct",
+            "arxiv": "https://arxiv.org/abs/1710.00379",
+            "software": "https://github.com/yangarbiter/rare-spurious-correlation",
+            "title": "libact: Pool-based Active Learning in Python",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Shao-Chuan Lee, Yu-An Chung, Tung-En Wu, Si-An Chen, and Hsuan-Tien Lin",
+            "ENTRYTYPE": "techreport",
+            "ID": "YY2017libact",
+            "bib_url": "bibs/YY2017libact.bib"
+        }
+    ],
+    "postprints": [
+        {
+            "software": "https://github.com/yangarbiter/nearest-category-generalization",
+            "arxiv": "https://arxiv.org/abs/2011.08485",
+            "url": "https://openreview.net/forum?id=fTNorIvVXG",
+            "year": "2023",
+            "issn": "2835-8856",
+            "journal": "Transactions on Machine Learning Research",
+            "title": "Probing Predictions on OOD Images via Nearest Categories",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Cyrus Rashtchian, Ruslan Salakhutdinov, and Kamalika Chaudhuri",
+            "ENTRYTYPE": "article",
+            "ID": "YY2023probing",
+            "bib_url": "bibs/YY2023probing.bib"
+        },
+        {
+            "software": "https://github.com/yangarbiter/dp-dg",
+            "arxiv": "https://arxiv.org/abs/2204.03230",
+            "booktitle": "NeurIPS",
+            "year": "2022",
+            "title": "What You See is What You Get: Distributional Generalization for Algorithm Design in Deep Learning",
+            "author": "Bogdan Kulynych*, <b><b>Yao-Yuan Yang</b></b>*, Yaodong Yu, Jarosław Błasiok, and Preetum Nakkiran",
+            "ENTRYTYPE": "article",
+            "ID": "BK2022wysiwyg",
+            "bib_url": "bibs/BK2022wysiwyg.bib"
+        },
+        {
+            "link": "https://www.nature.com/articles/s41598-022-21384-0",
+            "url": "https://www.nature.com/articles/s41598-022-21384-0",
+            "doi": "10.1038/s41598-022-21384-0",
+            "journal": "Scientific Reports",
+            "year": "2022",
+            "title": "Person-identifying brainprints are stably embedded in EEG mindprints",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Angel Hsing-Chi Hwang, Chien-Te Wu, and Tsung-Ren Huang",
+            "ENTRYTYPE": "article",
+            "ID": "YY2022brainprints",
+            "bib_url": "bibs/YY2022brainprints.bib"
+        },
+        {
+            "software": "https://github.com/pytorch/audio",
+            "booktitle": "Proceedings of IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)",
+            "arxiv": "https://arxiv.org/abs/2110.15018",
+            "year": "2022",
+            "title": "TorchAudio: Building Blocks for Audio and Speech Processing",
+            "author": "<b><b>Yao-Yuan Yang</b></b>*, Moto Hira*, Zhaoheng Ni*, Anjali Chourdia, Artyom Astafurov, Caroline Chen, Ching-Feng Yeh, Christian Puhrsch, David Pollack, Dmitriy Genzel, Donny Greenberg, Edward Z. Yang, Jason Lian, Jay Mahadeokar, Jeff Hwang, Ji Chen, Peter Goldsborough, Prabhat Roy, Sean Narenthiran, Shinji Watanabe, Soumith Chintala, Vincent Quenneville-Bélair, and Yangyang Shi",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2022torchaudio",
+            "bib_url": "bibs/YY2022torchaudio.bib"
+        },
+        {
+            "pdf": "https://angelhwang.github.io/docs/CSCW_VB.pdf",
+            "link": "https://dl.acm.org/doi/10.1145/3476044",
+            "booktitle": "Proceedings of the 2021 ACM Conference on Computer Supported Cooperative Work (CSCW)",
+            "year": "2021",
+            "title": "Hide and seek: Choices of virtual backgrounds in video chats and their effects on perception",
+            "author": "Angel Hsing-Chi Hwang, Cheng Yao Wang, <b><b>Yao-Yuan Yang</b></b>, and Andrea Stevenson Won",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "AH2021hide",
+            "bib_url": "bibs/AH2021hide.bib",
+            "video": "https://www.youtube.com/watch?v=mBazp0ZdjO0"
+        },
+        {
+            "software": "https://github.com/yangarbiter/interpretable-robust-trees",
+            "arxiv": "https://arxiv.org/abs/2102.07048",
+            "booktitle": "Proceedings of International Conference on Machine Learning (ICML)",
+            "year": "2021",
+            "title": "Connecting Interpretability and Robustness in Decision Trees through Separation",
+            "author": "Michal Moshkovitz, <b><b>Yao-Yuan Yang</b></b>, and Kamalika Chaudhuri",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "MM2021connecting",
+            "bib_url": "bibs/MM2021connecting.bib"
+        },
+        {
+            "software": "https://github.com/yangarbiter/robust-local-lipschitz",
+            "arxiv": "https://arxiv.org/abs/2003.02460",
+            "booktitle": "Proceedings of Neural Information Processing Systems (NeurIPS)",
+            "year": "2020",
+            "title": "A Closer Look at Accuracy vs. Robustness",
+            "author": "<b><b>Yao-Yuan Yang</b></b>*, Cyrus Rashtchian*, Hongyang Zhang, Ruslan Salakhutdinov, and Kamalika Chaudhuri",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2020roblocallip",
+            "bib_url": "bibs/YY2020roblocallip.bib"
+        },
+        {
+            "software": "https://github.com/yangarbiter/adversarial-nonparametrics",
+            "arxiv": "https://arxiv.org/abs/1906.03310",
+            "booktitle": "Proceedings of the International Conference on\nArtificial Intelligence and Statistics (AISTATS)",
+            "year": "2020",
+            "title": "Robustness for Non-Parametric Classification: A Generic Attack and Defense",
+            "author": "<b><b>Yao-Yuan Yang</b></b>*, Cyrus Rashtchian*, Yizhen Wang, and Kamalika Chaudhuri",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2020advprune",
+            "bib_url": "bibs/YY2020advprune.bib"
+        },
+        {
+            "pdf": "http://yyyang.me/docs/paper/BC20pablo.pdf",
+            "year": "2020",
+            "booktitle": "Proceedings of the Special Interest Group on Computer Science Education (SIGCSE)",
+            "title": "PABLO: Helping Novices Debug Python Code Through Data-Driven Fault Localization",
+            "author": "Benjamin Cosman, Madeline Endres, Georgios Sakkas, Leon Medvinsky, <b><b>Yao-Yuan Yang</b></b>, Ranjit Jhala, Kamalika Chaudhuri, and Westley Weimer",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "BC2020pablo",
+            "bib_url": "bibs/BC2020pablo.bib"
+        },
+        {
+            "software": "https://github.com/yangarbiter/multilabel-learn/tree/master/mlearn/models/rethinknet",
+            "arxiv": "https://arxiv.org/abs/1802.01697",
+            "eprint": "arXiv:1802.01697",
+            "booktitle": "Proceedings of the Asian Conference on Machine Learning (ACML)",
+            "year": "2019",
+            "month": "Nov",
+            "title": "Deep Learning with a Rethinking Structure for Multi-label Classification",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Yi-An Lin, Hong-Min Chu, and Hsuan-Tien Lin",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2019rethink",
+            "bib_url": "bibs/YY2019rethink.bib"
+        },
+        {
+            "keyword": "cost-sensitive, multi-label",
+            "pdf": "http://yyyang.me/docs/paper/pakdd18csrpe.pdf",
+            "software": "https://github.com/yangarbiter/multilabel-learn/blob/master/mlearn/models/csrpe.py",
+            "pages": "143--155",
+            "arxiv": "https://arxiv.org/abs/1611.09461",
+            "month": "Jun",
+            "year": "2018",
+            "booktitle": "Proceedings of the Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD)",
+            "title": "Cost-Sensitive Reference Pair Encoding for Multi-Label Learning",
+            "author": "<b><b>Yao-Yuan Yang</b></b>, Kuan-Hao Huang, Chih-Wei Chang, and Hsuan-Tien Lin",
+            "ENTRYTYPE": "inproceedings",
+            "ID": "YY2018csrpe",
+            "bib_url": "bibs/YY2018csrpe.bib"
+        }
+    ],
+    "timestamp": "EDT 03:02, 12 Sep, 2023"
+}

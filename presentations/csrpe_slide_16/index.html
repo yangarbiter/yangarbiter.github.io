@@ -1,0 +1,504 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Cost-Sensitive Random Pair Encoding</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/sky.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!--
+    <link rel="stylesheet" href="lib/css/mermaid.css">
+    <script src="lib/js/mermaid.full.js"></script>
+    -->
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Cost-Sensitive Random Pair Encoding for Cost-Sensitive Multi-Label
+          Classification
+          <p>
+            <small> Yao-Yuan Yang, Chih-Wei Chang, Hsuan-Tien Lin </small>
+          </p>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              Classification
+              * feature vector: $x \in \mathcal{X} \subset \mathbb{R}^d$
+              * predicted result: $y \in \mathcal{Y}$
+              * generated from a truth $f: \mathcal{X} \rightarrow
+              \mathcal{Y}$
+              * find a hypothesis $h: \mathcal{X}
+              \rightarrow \mathcal{Y}$ that is
+              <span style="color: red">close</span> to $f$
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Cost-Sensitive Classification
+              * different ways of evaluating the
+              <span style="color: red">closeness</span> between $h$ and $f$
+              in different usage case
+              * test-set
+              * instance-wise, average of the score (cost) for each instance in
+              test-set
+              * cost-function: $C: \mathcal{Y} \times \mathcal{Y} \rightarrow \mathbb{R}$
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Types of Classification
+              * Binary Classification: <span style="color: green">$\mathcal{Y} \subseteq \\{0, 1\\}$</span>
+              (class)
+              * Multi-Class Classification: <span style="color: green">$\mathcal{Y} \subseteq \\{1, ..., K\\}$</span>
+              (class)
+              * Multi-Label Classification: <span style="color: green">$\mathcal{Y} \subseteq \\{0, 1\\}^K$</span>
+              (label vector)
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Common cost-functions in multi-label
+              * $\mathbf{y}$ be the groundtruth and $\mathbf{\hat{y}}$ be the predicted label vector
+              * $\mathbf{y}[k]$ be the $k$-th label in label vector $\mathbf{y}$
+                * Hamming$(\mathbf{y}, \mathbf{\hat{y}}) = \frac{1}{K} \sum_{k=1}^K
+                  [\mathbf{y}[k] \neq \mathbf{\hat{y}}[k]]$
+                * F1$(\mathbf{y}, \mathbf{\hat{y}}) = \frac{2\\| \mathbf{y} \cap
+                  \mathbf{\hat{y}}\\|_1}{\\|\mathbf{y}\\|_1 + \\|\mathbf{\hat{y}}\\|_1}$
+                * Rankloss$(\mathbf{y}, \mathbf{\hat{y}}) = \sum_{\mathbf{y}[i]>\mathbf{y}[j]}\left([\mathbf{\hat{y}}[i]<\mathbf{\hat{y}}[j]] + \frac{1}{2}[\mathbf{\hat{y}}[i]=\mathbf{\hat{y}}[j]]\right)$
+                * Accuracy$(\mathbf{y}, \mathbf{\hat{y}}) = \frac{\\|\mathbf{y}
+                  \cap \mathbf{\hat{y}}\\|_1}{\\|\mathbf{y} \cup \mathbf{\hat{y}}\\|_1}$
+              * note that the cost-function might be larger the better or
+              smaller the better
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Cost-Sensitive Classification
+              * passing the cost function as a parameter
+              * utilize the cost information to get better perform performance if we know the cost function beforehand
+            </script>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              Cost-Sensitive Multi-Label Classification (CSMLC)
+              * many previous work in multi-class classification
+                * filter tree
+                * cost-sensitive one-versus-one
+              * Label Power-set (LP)
+              <!-- .element: class="fragment fade-up" data-fragment-index="1" -->
+                * treat each label vector ($\\{0, 1\\}^K$) as a distinct class
+                  ($\\{1, .., 2^K\\}$) forming $2^K$-class classification
+                <!-- .element: class="fragment fade-up" data-fragment-index="1" -->
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              CSMLC algorithms
+              * Condense Filter Tree (CFT)
+                * first cost-sensitive multi-label algorithm
+                * LP + filter tree
+                * CSOVO performs better than filter tree
+                <!-- .element: class="fragment fade-up" data-fragment-index="1" -->
+
+              * Progressive Random k-Labelsets (PRKEL)
+                * does LP on a subset of labels
+                * partial LP
+                <!-- .element: class="fragment fade-up" data-fragment-index="1" -->
+            </script>
+          </section>
+
+          <!--
+          <section data-markdown>
+            <script type="text/template">
+              Probabilistic Classifier Chain (PCC)
+              * Classifier Chain
+              * Bayesian inference in prediction for some special cost
+                functions
+            </script>
+          </section>
+          -->
+        </section>
+
+        <section>
+          <section data-markdown>
+            Basic Idea
+            ![basic idea](lib/pngs/basic_idea.png)
+          </section>
+
+          <section>
+            OVO
+            <img style="border: None" src="lib/pngs/ovo.png">
+            <small>Hsuan-Tien Lin's MOOC handout</small>
+            <small>http://www.csie.ntu.edu.tw/~htlin/mooc/doc/11_present.pdf</small>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Cost-Sensitive One-Vurse-One (CSOVO)
+              * reduce to $\binom{K}{2}$ binary classifiers like usual OVO
+              * each classifier considers all examples
+              * class: $\alpha, \beta$, dataset: $\\{\mathbf{x}^{(n)}, y^{(n)}\\}^N_{n=1}$
+              <!-- .element: class="fragment fade-up" data-fragment-index="1" -->
+              * re-label:
+              <!-- .element: class="fragment fade-up" data-fragment-index="1" -->
+                * $sign(C(\alpha, y^{(n)})-C(\beta, y^{(n)}))$
+              <!-- .element: class="fragment fade-up highlight-red" data-fragment-index="2" -->
+              * instance weight:
+              <!-- .element: class="fragment fade-up" data-fragment-index="1" -->
+                * $|C(\alpha, y^{(n)})-C(\beta, y^{(n)})|$
+              <!-- .element: class="fragment fade-up highlight-red" data-fragment-index="2" -->
+              * voting on each class ($\alpha$ or $\beta$)
+              <!-- .element: class="fragment fade-up" data-fragment-index="3" -->
+            </script>
+          </section>
+
+          <!--
+          <section>
+            Multi-Label Error Correcting Code (ML-ECC)
+            <ul>
+              <li>
+                utilizing approaches from communication
+              </li>
+              <li>
+                classifier as the noisy channel, which may have error on the
+                predicted_enc_vec
+              </li>
+              <li>
+                design enc_vec to be tolerable to error
+              </li>
+            </ul>
+
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              * Training: given training set $\\{(\mathbf{x}^{(n)},
+                \mathbf{y}^{(n)})\\}^N\_{n=1}$
+                * encoded vectors $\\{\mathbf{b}^{(n)}\\}^N\_{n=1} =
+                  \\{enc(\mathbf{y}^{(n)})\\}^N\_{n=1}$
+                * train $\\{(\mathbf{x}^{(n)}, \mathbf{b}^{(n)})\\}^N\_{n=1}$ and return classifier $h$
+              * Prediction: given feature vector $\mathbf{x}$
+                * predict codeword $\tilde{\mathbf{b}} = h(\mathbf{x})$
+                * return prediction $\hat{\mathbf{y}} = dec(\tilde{\mathbf{b}})$
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Error Correcting (Output) Code
+              * tehcnique in multi-class like the error correcting code in communication
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Basic Ideas
+              * Label Power-set (LP)
+                * treat each label vector ($\\{0, 1\\}^K$) as a distinct class
+                  ($\\{1, .., 2^K\\}$) forming $2^K$-class classification
+              * CSOVO
+                * a binary classifier for each pair of classes (total:
+                  $\binom{2^K}{2}$)
+                * voting on each class
+            </script>
+          </section>!-->
+        </section>
+
+        <section>
+          <section> Cost-Sensitive Random-Pair Encoding (CSRPE) </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Let's assume we are using Hamming loss, $K = 4$
+
+              re-label: $sign(Hamming(\alpha, y)-Hamming(\beta, y))$
+
+              $\mathbf{\alpha}$ = (1, 0, <span style="color:red">1</span>, <span style="color:red">0</span>),
+              $\mathbf{\beta}$ = (1, 0, <span style="color:red">0</span>, <span style="color:red">1</span>)
+
+              $\mathbf{\alpha}$ = (0, 0, 1, 0), $\mathbf{\beta}$ = (0, 0, 0, 1)
+
+              $\mathbf{\alpha}$ = (1, 1, 1, 0), $\mathbf{\beta}$ = (1, 1, 0, 1)
+
+              $\mathbf{\alpha}$ = (0, 1, 1, 0), $\mathbf{\beta}$ = (0, 1, 0, 1)
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Sample classifiers from CSOVO
+              * total possible binary classifiers: $\binom{2^K}{2}$
+              * random sampling (random pair) ($M$ classifiers)
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Prediction
+              * ~~class voting~~
+              * ~~bit-wise voting~~
+              * re-label
+                * $sign(C(\alpha, y)-C(\beta, y))$
+                * the sub-problem solves whether predict $y$ as $\alpha$
+                or $\beta$ is better
+              * vote on <span class="fragment strike"
+                data-fragment-index="1">all label vectors</span> on that side
+              * vote on a set of label vectors on that side
+              <!-- .element: class="fragment fade-up" data-fragment-index="2" -->
+            </script>
+          </section>
+
+          <section> <div id="decode-intuition1"></div> </section>
+          <section> <div id="decode-intuition2"></div> </section>
+          <section>
+            nearest-neighbor
+            <div id="decode-intuition3"></div>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Sum up
+              * training
+                1. randomly sample $M$ classifiers  from full CSOVO and train
+                2. for each $x$, <span style="color: red">encode</span> it to a
+                  length $M$ bit string (by the prediction of the sampled binary
+                  classifiers)
+              * prediction (a new $x$)
+                1. <span style="color: red">encodes</span> a $x$ into length
+                  $M$ bit string
+                2. find the 1-nearest neighbor of the encoded bit string from
+                  the training set and use its label vector as prediction
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Full label
+              ![full labeled](lib/pngs/fulllabel_ham_f1.png)
+              note that CAL500 has all label vectors distinct
+            </script>
+          </section>
+
+          <section>
+            <h4>Experiment converge</h4>
+            <div>
+              <table>
+                <tr>
+                  <td><img src=lib/pngs/f1_bibtex.png></td>
+                  <td><img src=lib/pngs/f1_scene.png></td>
+                </tr>
+                <tr>
+                  <td style="text-align: center">f1 bibtex (K=499)</td>
+                  <td style="text-align: center">f1 scene (K=294)</td>
+                </tr>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section> Comparisons (Experiments) </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              Set up
+              * 50-50 for training and testing
+              * 20 runs for each experiment
+              * base learner
+                * CSRPE: decision tree
+                * BR, RAKEL, HAMR, CFT: random forest
+                * total number of trained trees are the same
+              * BR, RAKEL, HAMR are cost insensitive
+            </script>
+          </section>
+
+          <section>
+            CSRPE versus other competitors based on t-test at 95% confident
+            level (win/tie/loss)
+            <table>
+              <thead>
+                <tr>
+                  <th>criteria</th>
+                  <th style="text-align: center">BR</th>
+                  <th style="text-align: center">RAKEL</th>
+                  <th style="text-align: center">HAMR</th>
+                  <th style="text-align: center">CFT</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>hamming</td>
+                  <td style="text-align: center">2/4/4</td>
+                  <td style="text-align: center">4/3/3</td>
+                  <td style="text-align: center">2/4/4</td>
+                  <td style="text-align: center">5/1/2</td>
+                </tr>
+                <tr>
+                  <td>f1</td>
+                  <td style="text-align: center">9/1/0</td>
+                  <td style="text-align: center">9/1/0</td>
+                  <td style="text-align: center">9/1/0</td>
+                  <td style="text-align: center">8/0/0</td>
+                </tr>
+                <tr>
+                  <td>rankloss</td>
+                  <td style="text-align: center">7/2/1</td>
+                  <td style="text-align: center">9/0/1</td>
+                  <td style="text-align: center">7/2/1</td>
+                  <td style="text-align: center">4/1/3</td>
+                </tr>
+                <tr>
+                  <td>accuracy</td>
+                  <td style="text-align: center">9/0/1</td>
+                  <td style="text-align: center">9/1/0</td>
+                  <td style="text-align: center">8/2/0</td>
+                  <td style="text-align: center">8/0/0</td>
+                </tr>
+                <tr>
+                  <td>total</td>
+                  <td style="text-align: center">27/7/6</td>
+                  <td style="text-align: center">31/5/4</td>
+                  <td style="text-align: center">26/9/5</td>
+                  <td style="text-align: center">25/2/5</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section>
+            Speed (v.s. CFT)
+            <table>
+              <tr>
+                <td><img src=lib/pngs/training_time_plot.png></td>
+                <td><img src=lib/pngs/predicting_time_plot.png></td>
+              </tr>
+                <tr>
+                  <td style="text-align: center">training time</td>
+                  <td style="text-align: center">prediction time</td>
+                </tr>
+            </table>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              Conclusion
+              * designed a cost-sensitive multi-label classification algorithm
+                that are able to adapt to different cost-functions
+              * out-perform state-of-the-art cost-sensitive multi-label
+                classification algorithm - CFT in performance and speed
+            </script>
+          </section>
+          <section> Thank you! Any question? </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      window.onload = function() {
+      Reveal.initialize({
+        history: true,
+
+        math: {
+          mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+          config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+        },
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/math/math.js', async: true },
+        ],
+
+        slideNumber: 'c/t'
+      });
+      };
+
+    </script>
+
+    <script>
+      var layout = {
+        title:'',
+        showlegend: false,
+        xaxis: {range:[1, 9], showticklabels: false, hoverformat: ''},
+        yaxis: {range:[1, 9], showticklabels: false, hoverformat: ''},
+        autosize: false,
+        width: 600,
+        height: 600,
+        margin: {l: 0, r: 0, b: 0, t: 0, pad: 4},
+      };
+      var trace1 = {
+        x: [2, 3, 4, 7, 2, 5, 8, 6],
+        y: [7, 2, 6, 5, 3, 4, 7, 2.5],
+        mode: 'markers', type: 'scatter', marker: { size: 15 }
+      };
+      var data = [ trace1 ];
+      Plotly.newPlot('decode-intuition1', data, layout,
+          {xanchor: "center", staticPlot: true, displayModeBar: false});
+
+      var trace2 = {
+        x: [4, 7],
+        y: [6, 5],
+        mode: 'markers', type: 'scatter', marker: { size: 15 }
+      };
+      var trace3 = {
+        x: [4, 6.66],
+        y: [1, 9],
+        mode: 'line', type: 'scatter'
+      };
+      var data = [ trace1, trace2, trace3 ];
+      Plotly.newPlot('decode-intuition2', data, layout,
+          {xanchor: "center", staticPlot: true, displayModeBar: false});
+
+      var trace4 = {
+        x: [4.625, 3.375],
+        y: [1, 9],
+        mode: 'line', type: 'scatter'
+      };
+      var trace5 = {
+        x: [9, 1.5],
+        y: [5.25, 9],
+        mode: 'line', type: 'scatter'
+      };
+      var data = [ trace1, trace3, trace4, trace5 ];
+      Plotly.newPlot('decode-intuition3', data, layout,
+          {xanchor: "center", staticPlot: true, displayModeBar: false});
+    </script>
+
+  </body>
+</html>
